@@ -3,7 +3,7 @@ sys.path.insert(0,'..')
 from data.whale_data import find_whale_account_token_tx
 from data.html_helper import check_if_address_name_exists
 from db.amazon_db import check_for_address_name,put_item
-from data.bfs_on_account import identify_investor_type
+from data.whale_eth_tx_data import identify_investor_type
 
 def main_business_logic():
     txs = find_whale_account_token_tx()
@@ -34,5 +34,9 @@ def main_business_logic():
             unique_out.add(out[3])
 
         for out in unique_out:
+            out_scan_name,source = check_for_address_name(out)
+            if out_scan_name != "":
+                print("\t\t{} {}".format(out_scan_name,out))
+                continue
             investor_type = identify_investor_type(out)
             print("\t\t{} {}".format(investor_type,out))
