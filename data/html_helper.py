@@ -10,9 +10,15 @@ def parse_date(target_data):
 def get_today():
     return parse_date(datetime.datetime.utcnow())
 
+url_content_cache = dict()
+
 def get_html_by_url(url):
-    html = scraper.get(url).content
-    soup = BeautifulSoup(html,"lxml")
+    if url not in url_content_cache:
+        html = scraper.get(url).content
+        soup = BeautifulSoup(html,"lxml")
+        url_content_cache[url] = soup
+    else:
+        soup = url_content_cache[url]
     return soup
 
 def find_token_tx_helper(url):
