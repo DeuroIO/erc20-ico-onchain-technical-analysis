@@ -5,6 +5,7 @@ from data.html_helper import check_if_address_name_exists
 from db.amazon_db import check_for_address_name,put_item
 from data.whale_eth_tx_data import *
 from data.whale_token_tx_data import identify_investor_type_token
+from plot.plotly_helper import plot_using_plotly
 
 holding_account = "holding_account"
 deposit_account = 'deposit_account'
