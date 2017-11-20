@@ -39,7 +39,7 @@ def identify_investor_type_helper(soup):
             tx_arr.append([tx_type,to_address])
     for tx in tx_arr:
         [tx_type,to_address] = tx
-        if tx_type == "OUT" and (("auction" in to_address) or ("sale" in to_address)):
+        if tx_type == "OUT" and (("auction" in to_address) or ("sale" in to_address) or ("etherdelta" in to_address)):
             return personal_type
         if tx_type == "OUT" and (("binance" in to_address) or ("liqui" in to_address) or ("bittrex" in to_address)):
             return exchange_type
@@ -49,13 +49,13 @@ def identify_investor_type(account):
     url = "http://etherscan.io/txs?a={}&mode".format(account)
     soup = get_html_by_url(url)
     total_number_of_page = get_total_number_of_page(soup)
-    print("\t[identify_investor_type] total_number_of_page:{} for {}".format(total_number_of_page,account))
+    print("\t\t[identify_investor_type] ETH : {} for {}".format(total_number_of_page,account))
 
     investor_type = identify_investor_type_helper(soup)
     if investor_type != affliate_type: return investor_type
 
     for i in range(2,min(bfs_max_depth+1,total_number_of_page+1)):
-        print("\t{}".format(i))
+        print("\t\t{}".format(i))
         soup = get_html_by_url("{}&p={}".format(url,i))
         investor_type = identify_investor_type_helper(soup)
         if investor_type != affliate_type: return investor_type

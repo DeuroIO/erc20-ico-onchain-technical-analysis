@@ -3,7 +3,8 @@ sys.path.insert(0,'..')
 from data.whale_data import find_whale_account_token_tx
 from data.html_helper import check_if_address_name_exists
 from db.amazon_db import check_for_address_name,put_item
-from data.whale_eth_tx_data import identify_investor_type
+from data.whale_eth_tx_data import *
+from data.whale_token_tx_data import identify_investor_type_token
 
 def main_business_logic():
     txs = find_whale_account_token_tx()
@@ -34,9 +35,12 @@ def main_business_logic():
             unique_out.add(out[3])
 
         for out in unique_out:
+            print("\t"+out)
             out_scan_name,source = check_for_address_name(out)
             if out_scan_name != "":
-                print("\t\t{} {}".format(out_scan_name,out))
+                print("\t\t{}".format(out_scan_name))
                 continue
             investor_type = identify_investor_type(out)
-            print("\t\t{} {}".format(investor_type,out))
+            if investor_type == affliate_type:
+                investor_type = identify_investor_type_token(out)
+            print("\t\t{}".format(investor_type))
