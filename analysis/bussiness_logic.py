@@ -49,10 +49,13 @@ def perform_bfs_on_accounts(out_txs,top_holder_type,acc,m_type='OUT'):
         if out_scan_name != "":
             print("\t\t{}".format(out_scan_name))
             continue
-        investor_type = identify_investor_type(out)
-        if investor_type == affliate_type:
-            investor_type = identify_investor_type_token(out)
-        print("\t\t{}".format(investor_type))
+        if out not in all_acc_types:
+            investor_type = identify_investor_type(out)
+            if investor_type == affliate_type:
+                investor_type = identify_investor_type_token(out)
+            print("\t\t{}".format(investor_type))
+        else:
+            investor_type = all_acc_types[out]
         if investor_type == exchange_type:
             top_holder_type[acc] = deposit_account if m_type == "OUT" else withdraw_account
         all_acc_types[out] = investor_type

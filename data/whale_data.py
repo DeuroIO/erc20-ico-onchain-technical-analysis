@@ -12,7 +12,7 @@ raiden_team_address = "0x00c7122633a4ef0bc72f7d02456ee2b11e97561e"
 
 def find_interstering_accounts():
     # Find accounts
-    txs = find_tx_given_token_contract_address(Watch_addr,1,1)
+    txs = find_tx_given_token_contract_address(Watch_addr,1,2)
     return txs
 
 def find_whale_account_token_tx():
