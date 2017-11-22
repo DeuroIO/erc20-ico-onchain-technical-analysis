@@ -3,6 +3,7 @@ sys.path.insert(0,'..')
 from data.whale_data import find_exchange_txs
 from plot.plotly_helper import plot_using_plotly
 from .binance_draw import get_kline_data_from_binance
+from .calculate_holding_amount import calculate_holding_amount
 
 in_type = "IN"
 out_type = "OUT"
@@ -94,7 +95,9 @@ def main_business_logic(client):
     deposit_trace = {"x":X,"y":deposit_trace_y,"name":"Exchange Deposit Amount"}
     withdraw_trace = {"x":X,"y":withdraw_trace_y,"name":"Exchange Withdraw Amount"}
     exchange_remain_amount_trace = {"x":X,"y":exchange_remain_amount_y,"name":"Exchange Remain Amount"}
-    plot_using_plotly("Total RDN Exchange Analysis (Binance,Etherdelta)",[deposit_trace,withdraw_trace,exchange_remain_amount_trace,price_trace,volume_trace])
+    holding_amount_y = calculate_holding_amount(X)
+    holding_amount_trace = {"x":X,"y":holding_amount_y,"name":"Top 50 RDN Holder Holding Amount"}
+    plot_using_plotly("Total RDN Exchange Analysis (Binance,Etherdelta)",[deposit_trace,withdraw_trace,exchange_remain_amount_trace,holding_amount_trace,price_trace,volume_trace])
 
     deposit_trace = {"x":X,"y":deposit_daily_trace_y,"name":"Exchange Deposit Amount"}
     withdraw_trace = {"x":X,"y":withdraw_daily_trace_y,"name":"Exchange Withdraw Amount"}
