@@ -2,6 +2,7 @@ import sys
 sys.path.insert(0,'..')
 from data.whale_data import find_exchange_txs
 from plot.plotly_helper import plot_using_plotly
+from .binance_draw import get_kline_data_from_binance
 
 in_type = "IN"
 out_type = "OUT"
@@ -34,7 +35,7 @@ def update_y_daily_array(X,y,timestamp,amount):
     y[target_index] += amount
     return y
 
-def main_business_logic():
+def main_business_logic(client):
     txs = find_exchange_txs()
 
     # 找到最早的交易时间
@@ -83,11 +84,18 @@ def main_business_logic():
     for i in range(0,len(X)):
         exchange_remain_amount_y[i] = deposit_trace_y[i] - withdraw_trace_y[i]
 
+    # Draw the kline data from binance
+    _,df,df_date = get_kline_data_from_binance(client)
+    df['avg'] = df[['close', 'high','low','open']].mean(axis=1)
+
+    price_trace = {'x':df_date,'y':df['avg'].values.tolist(),'name':"Binance Price ETH","yaxis":'y2'}
+    volume_trace = {'x':df_date,'y':df['volume'].values.tolist(),'name':"Binance Volume"}
+
     deposit_trace = {"x":X,"y":deposit_trace_y,"name":"Exchange Deposit Amount"}
     withdraw_trace = {"x":X,"y":withdraw_trace_y,"name":"Exchange Withdraw Amount"}
     exchange_remain_amount_trace = {"x":X,"y":exchange_remain_amount_y,"name":"Exchange Remain Amount"}
-    plot_using_plotly("Total RDN Exchange Analysis (Binance,Etherdelta)",[deposit_trace,withdraw_trace,exchange_remain_amount_trace])
+    plot_using_plotly("Total RDN Exchange Analysis (Binance,Etherdelta)",[deposit_trace,withdraw_trace,exchange_remain_amount_trace,price_trace,volume_trace])
 
     deposit_trace = {"x":X,"y":deposit_daily_trace_y,"name":"Exchange Deposit Amount"}
     withdraw_trace = {"x":X,"y":withdraw_daily_trace_y,"name":"Exchange Withdraw Amount"}
-    plot_using_plotly("Daily RDN Exchange Analysis (Binance,Etherdelta)",[deposit_trace,withdraw_trace])
+    plot_using_plotly("Hourly RDN Exchange Analysis (Binance,Etherdelta)",[deposit_trace,withdraw_trace,price_trace])

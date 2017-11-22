@@ -33,7 +33,12 @@ def plot_using_plotly(title,traces):
       "yaxis": {
         "autorange": True,
         "title": "Amount"
-      }
+      },
+      "yaxis2":{
+        "title":'yaxis2 title',
+        "overlaying":'y',
+        "side":'right'
+        }
     }
     fig = Figure(data=data, layout=layout)
     plot_url = py.plot(fig)
