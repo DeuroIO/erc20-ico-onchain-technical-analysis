@@ -97,10 +97,10 @@ def main_business_logic(client,symbol,escape_accounts):
     deposit_trace = {"x":X,"y":deposit_trace_y,"name":"Exchange Deposit Amount"}
     withdraw_trace = {"x":X,"y":withdraw_trace_y,"name":"Exchange Withdraw Amount"}
     exchange_remain_amount_trace = {"x":X,"y":exchange_remain_amount_y,"name":"Exchange Remain Amount"}
-    # holding_amount_y = calculate_holding_amount(X,escape_accounts)
-    # holding_amount_trace = {"x":X,"y":holding_amount_y,"name":"Top 50 {} Holder Holding Amount".format(symbol)}
-    # plot_using_plotly("Total {} Exchange Analysis (Binance,Etherdelta)".format(symbol),[deposit_trace,withdraw_trace,exchange_remain_amount_trace,holding_amount_trace,price_trace,volume_trace])
-    plot_using_plotly("Total {} Exchange Analysis (Bittrex, Bitfinex, Binance, Poloniex,liqui.io)".format(symbol),[deposit_trace,withdraw_trace,exchange_remain_amount_trace,price_trace,volume_trace])
+    holding_amount_y = calculate_holding_amount(X,escape_accounts)
+    holding_amount_trace = {"x":X,"y":holding_amount_y,"name":"Top 50 {} Holder Holding Amount".format(symbol)}
+    plot_using_plotly("Total {} Exchange Analysis (Bittrex, Bitfinex, Binance, Poloniex,liqui.io)".format(symbol),[deposit_trace,withdraw_trace,exchange_remain_amount_trace,holding_amount_trace,price_trace,volume_trace])
+    # plot_using_plotly("Total {} Exchange Analysis (Bittrex, Bitfinex, Binance, Poloniex,liqui.io)".format(symbol),[deposit_trace,withdraw_trace,exchange_remain_amount_trace,price_trace,volume_trace])
 
     deposit_trace = {"x":X,"y":deposit_daily_trace_y,"name":"Exchange Deposit Amount"}
     withdraw_trace = {"x":X,"y":withdraw_daily_trace_y,"name":"Exchange Withdraw Amount"}
