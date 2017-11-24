@@ -44,7 +44,6 @@ def check_for_address_name(address):
         if account_name != "":
             # flip,score = is_flipping(address)
             flip,score = 1,1
-            put_item(address,account_name,flip,score)
             return (account_name,"scan")
         else:
             return ("","scan")

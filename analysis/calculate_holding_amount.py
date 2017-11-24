@@ -1,8 +1,8 @@
 import sys
 sys.path.insert(0,'..')
-from data.whale_data import find_whale_account_token_tx,exchnage_accounts,raiden_team_address
+from data.whale_data import find_whale_account_token_tx,exchnage_accounts
 from data.html_helper import check_if_address_name_exists
-from db.amazon_db import check_for_address_name,put_item
+from db.amazon_db import check_for_address_name
 from data.whale_eth_tx_data import *
 from data.whale_token_tx_data import identify_investor_type_token
 
@@ -36,7 +36,7 @@ def perform_bfs_on_accounts(out_txs,top_holder_type,acc,m_type='OUT'):
     unique_out = set()
     for out in out_txs:
         unique_out.add(out[3])
-
+    unique_out = list(unique_out)[:5]
     for out in unique_out:
         print("\t"+out)
         out_scan_name,source = check_for_address_name(out)
@@ -59,7 +59,7 @@ def perform_bfs_on_accounts(out_txs,top_holder_type,acc,m_type='OUT'):
 
     return top_holder_type
 
-def calculate_holding_amount(X):
+def calculate_holding_amount(X,escape_accounts):
     txs = find_whale_account_token_tx()
     top_holder_type = dict()
 
@@ -79,11 +79,10 @@ def calculate_holding_amount(X):
         out_txs = [item for item in tx if item[2] == 'OUT']
         if len(out_txs) == 0:
             print("\tholding account")
-            if scan_name != "": aws_name = scan_name
-            elif a_name != "": aws_name = a_name
-            else: aws_name = "RDN Top holders"
-            put_item(acc,aws_name,"[RDN]holding")
             top_holder_type[acc] = holding_account
+            continue
+
+        if acc in escape_accounts:
             continue
 
         #在所有OUT账号上做BFS
@@ -97,6 +96,12 @@ def calculate_holding_amount(X):
     amount_trace_y = [0] * len(X)
 
     for holder in txs:
+        if holder in escape_accounts:
+            continue
+        if holder not in top_holder_type:
+            print("{} not identified! ".format(holder))
+            continue
+        
         holder_type = top_holder_type[holder]
         holder_txs = txs[holder]
         print("{} {}".format(holder,holder_type))

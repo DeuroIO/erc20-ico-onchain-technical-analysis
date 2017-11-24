@@ -1,7 +1,7 @@
 import datetime
 from bs4 import BeautifulSoup
 import cfscrape
-scraper = cfscrape.create_scraper()
+
 
 def parse_date(target_data):
     target_data = target_data.replace(minute=0, hour=0, second=0, microsecond=0)
@@ -14,6 +14,7 @@ url_content_cache = dict()
 
 def get_html_by_url(url):
     if url not in url_content_cache:
+        scraper = cfscrape.create_scraper()
         html = scraper.get(url).content
         soup = BeautifulSoup(html,"lxml")
         url_content_cache[url] = soup

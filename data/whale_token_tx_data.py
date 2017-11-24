@@ -31,7 +31,7 @@ def identify_investor_type_helper_token_helper(soup):
         [tx_type,to_address] = tx
         if tx_type == "OUT" and (("auction" in to_address) or ("sale" in to_address) or ("etherdelta" in to_address)):
             return personal_type
-        if tx_type == "OUT" and (("binance" in to_address) or ("liqui" in to_address) or ("bittrex" in to_address)):
+        if tx_type == "OUT" and (("binance" in to_address) or ("liqui" in to_address) or ("bittrex" in to_address) or ("poloniex" in to_address) or ("bitfinex" in to_address)):
             return exchange_type
     return affliate_type
 

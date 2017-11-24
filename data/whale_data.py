@@ -32,7 +32,7 @@ def find_whale_account_token_tx():
 
 def find_exchange_txs():
     all_arr = exchnage_accounts
-    print("-------------------find_whale_account_token_tx--------------------")
+    print("-------------------find_exchange_txs--------------------")
     print("len(all_arr): {}".format(len(all_arr)))
     counter = 0
     acc_features = dict()
