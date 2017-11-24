@@ -2,7 +2,7 @@ from .html_helper import get_total_number_of_page,get_html_by_url
 from dateutil import parser
 from joblib import Parallel, delayed
 import multiprocessing
-num_cores = multiprocessing.cpu_count()
+num_cores = int(multiprocessing.cpu_count() * 2 / 3)
 
 def find_whale_tx_helper(url):
     soup = get_html_by_url(url)
