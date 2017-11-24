@@ -36,6 +36,8 @@ class CustomPlotlyJSONEncoder(PlotlyJSONEncoder):
         return PlotlyJSONEncoder.default(self, obj)
 
 def plot_using_plotly(title,traces):
+    sep = (",", ":")
+    traces = dumps(traces, cls=CustomPlotlyJSONEncoder, separators=sep)
     data = Data(traces)
     layout = {
       "autosize": True,
@@ -57,9 +59,7 @@ def plot_using_plotly(title,traces):
         "side":'right'
         }
     }
-    sep = (",", ":")
-    data_js = dumps(data, cls=CustomPlotlyJSONEncoder, separators=sep)
-    fig = Figure(data=data_js, layout=layout)
+    fig = Figure(data=data, layout=layout)
     plot_url = py.plot(fig)
     print(title + " --- " + plot_url)
 
