@@ -30,7 +30,7 @@ class CustomPlotlyJSONEncoder(PlotlyJSONEncoder):
 
     def default(self, obj):
         """The new custom default encoder."""
-        if is_float_dtype(obj):
+        if isinstance(obj,float):
             return float2str(obj)
 
         return PlotlyJSONEncoder.default(self, obj)
