@@ -55,4 +55,5 @@ if __name__ == "__main__":
     (stat,df,_) = get_kline_data_from_binance_main(client,symbol='SNTETH')
     df['avg'] = df[['close', 'high','low','open']].mean(axis=1)
     df['avg'] = df.apply(lambda x: '{0:f}'.format(x.avg),axis=1)
+    df['avg'] = df['avg'] + " SNTETH"
     print(df)
