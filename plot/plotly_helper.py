@@ -1,7 +1,5 @@
 import plotly.plotly as py
 from plotly.graph_objs import *
-from plotly.utils import PlotlyJSONEncoder
-from json import dumps
 
 py.sign_in('gelei', 'SYLSznL3X1AeEV724w1q')
 trace1 = {
@@ -20,24 +18,7 @@ trace3 = {
   "name": "Center Air",
 }
 
-def float2str(obj):
-    """Float to string."""
-    return [format(x, '.10g') for x in obj]
-
-
-class CustomPlotlyJSONEncoder(PlotlyJSONEncoder):
-    """Customized PlotlyJSONEncoder encoder."""
-
-    def default(self, obj):
-        """The new custom default encoder."""
-        if isinstance(obj,float):
-            return float2str(obj)
-
-        return PlotlyJSONEncoder.default(self, obj)
-
 def plot_using_plotly(title,traces):
-    sep = (",", ":")
-    traces = dumps(traces, cls=CustomPlotlyJSONEncoder, separators=sep)
     data = Data(traces)
     layout = {
       "autosize": True,
