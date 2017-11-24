@@ -26,7 +26,10 @@ symbol = 'MTL'
 Watch_addr = "0xF433089366899D83a9f26A773D59ec7eCF30355e"    #MTL
 
 symbol = 'KNC'
-Watch_addr = "0xdd974d5c2e2928dea5f71b9825b8b646686bd200"    #MTL
+Watch_addr = "0xdd974d5c2e2928dea5f71b9825b8b646686bd200"    #KNC
+
+symbol = 'ZRX'
+Watch_addr = "0xe41d2489571d322189246dafa5ebde1f4699f498"    #MTL
 
 wd.Watch_addr = Watch_addr
 wd.exchnage_accounts = exchange_accounts
