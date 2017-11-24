@@ -25,7 +25,7 @@ Watch_addr = "0x41e5560054824ea6b0732e656e3ad64e20e94e45"    #CVC
 symbol = 'MTL'
 Watch_addr = "0xF433089366899D83a9f26A773D59ec7eCF30355e"    #MTL
 
-symbol = 'KYC'
+symbol = 'KNC'
 Watch_addr = "0xdd974d5c2e2928dea5f71b9825b8b646686bd200"    #MTL
 
 wd.Watch_addr = Watch_addr
