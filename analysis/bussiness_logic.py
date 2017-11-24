@@ -3,6 +3,7 @@ sys.path.insert(0,'..')
 from data.whale_data import find_exchange_txs
 from plot.plotly_helper import plot_using_plotly
 from .binance_draw import get_kline_data_from_binance_main
+from .poloniex_draw import poloniex_kline_data
 from .calculate_holding_amount import calculate_holding_amount
 
 in_type = "IN"
@@ -86,7 +87,8 @@ def main_business_logic(client,symbol,escape_accounts):
         exchange_remain_amount_y[i] = deposit_trace_y[i] - withdraw_trace_y[i]
 
     # Draw the kline data from binance
-    _,df,df_date = get_kline_data_from_binance_main(client,symbol='{}ETH'.format(symbol))
+    # _,df,df_date = get_kline_data_from_binance_main(client,symbol='{}ETH'.format(symbol))
+    _,df,df_date = poloniex_kline_data('ETH_{}'.format(symbol))
     df['avg'] = df[['close', 'high','low','open']].mean(axis=1)
 
     price_trace = {'x':df_date,'y':df['avg'].values.tolist(),'name':"Binance Price ETH","yaxis":'y2'}
