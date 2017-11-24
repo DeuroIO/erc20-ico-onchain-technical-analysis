@@ -52,5 +52,7 @@ if __name__ == "__main__":
     from binance.client import Client
     encry_pass = sys.argv[1]
     client = Client(encry_pass, "../txts/binance")
-    (stat,df,_) = get_kline_data_from_binance_main(client,symbol='OMGETH')
+    (stat,df,_) = get_kline_data_from_binance_main(client,symbol='SNTETH')
+    df['avg'] = df[['close', 'high','low','open']].mean(axis=1)
+    df['avg'] = df.apply(lambda x: '{0:f}'.format(x.avg),axis=1)
     print(df)

@@ -88,7 +88,8 @@ def main_business_logic(client,symbol,escape_accounts):
     # Draw the kline data from binance
     _,df,df_date = get_kline_data_from_binance_main(client,symbol='{}ETH'.format(symbol))
     df['avg'] = df[['close', 'high','low','open']].mean(axis=1)
-
+    df['avg'] = df.apply(lambda x: '{0:f}'.format(x.avg),axis=1)
+    
     price_trace = {'x':df_date,'y':df['avg'].values.tolist(),'name':"Binance Price ETH","yaxis":'y2'}
     volume_trace = {'x':df_date,'y':df['volume'].values.tolist(),'name':"Binance Volume"}
 
