@@ -18,6 +18,21 @@ trace3 = {
   "name": "Center Air",
 }
 
+def float2str(obj):
+    """Float to string."""
+    return [format(x, '.10g') for x in obj]
+
+
+class CustomPlotlyJSONEncoder(PlotlyJSONEncoder):
+    """Customized PlotlyJSONEncoder encoder."""
+
+    def default(self, obj):
+        """The new custom default encoder."""
+        if is_float_dtype(obj):
+            return float2str(obj)
+
+        return PlotlyJSONEncoder.default(self, obj)
+
 def plot_using_plotly(title,traces):
     data = Data(traces)
     layout = {
@@ -40,7 +55,9 @@ def plot_using_plotly(title,traces):
         "side":'right'
         }
     }
-    fig = Figure(data=data, layout=layout)
+    sep = (",", ":")
+    data_js = dumps(data, cls=CustomPlotlyJSONEncoder, separators=sep)
+    fig = Figure(data=data_js, layout=layout)
     plot_url = py.plot(fig)
     print(title + " --- " + plot_url)
 
