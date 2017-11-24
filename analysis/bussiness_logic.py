@@ -87,8 +87,8 @@ def main_business_logic(client,symbol,escape_accounts):
         exchange_remain_amount_y[i] = deposit_trace_y[i] - withdraw_trace_y[i]
 
     # Draw the kline data from binance
-    # _,df,df_date = get_kline_data_from_binance_main(client,symbol='{}ETH'.format(symbol))
-    _,df,df_date = poloniex_kline_data('ETH_{}'.format(symbol))
+    _,df,df_date = get_kline_data_from_binance_main(client,symbol='{}BTC'.format(symbol))
+    # _,df,df_date = poloniex_kline_data('ETH_{}'.format(symbol))
     df['avg'] = df[['close', 'high','low','open']].mean(axis=1)
 
     price_trace = {'x':df_date,'y':df['avg'].values.tolist(),'name':"Binance Price ETH","yaxis":'y2'}
@@ -100,8 +100,8 @@ def main_business_logic(client,symbol,escape_accounts):
     # holding_amount_y = calculate_holding_amount(X,escape_accounts)
     # holding_amount_trace = {"x":X,"y":holding_amount_y,"name":"Top 50 {} Holder Holding Amount".format(symbol)}
     # plot_using_plotly("Total {} Exchange Analysis (Binance,Etherdelta)".format(symbol),[deposit_trace,withdraw_trace,exchange_remain_amount_trace,holding_amount_trace,price_trace,volume_trace])
-    plot_using_plotly("Total {} Exchange Analysis (Binance,Etherdelta)".format(symbol),[deposit_trace,withdraw_trace,exchange_remain_amount_trace,price_trace,volume_trace])
+    plot_using_plotly("Total {} Exchange Analysis (Bittrex, Bitfinex, Binance, Poloniex,liqui.io)".format(symbol),[deposit_trace,withdraw_trace,exchange_remain_amount_trace,price_trace,volume_trace])
 
     deposit_trace = {"x":X,"y":deposit_daily_trace_y,"name":"Exchange Deposit Amount"}
     withdraw_trace = {"x":X,"y":withdraw_daily_trace_y,"name":"Exchange Withdraw Amount"}
-    plot_using_plotly("Hourly {} Exchange Analysis (Binance,Etherdelta)".format(symbol),[deposit_trace,withdraw_trace,price_trace])
+    plot_using_plotly("Hourly {} Exchange Analysis (Bittrex, Bitfinex, Binance, Poloniex,liqui.io)".format(symbol),[deposit_trace,withdraw_trace,price_trace])
