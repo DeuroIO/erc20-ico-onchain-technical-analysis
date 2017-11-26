@@ -40,6 +40,5 @@ def coinmarketcap_data(symbol):
     return (df,t_arr)
 
 if __name__ == "__main__":
-    df,times = coinmarketcap_data('0x')
+    df,times = coinmarketcap_data('raiden-network-token')
     print(df)
-    print(times)

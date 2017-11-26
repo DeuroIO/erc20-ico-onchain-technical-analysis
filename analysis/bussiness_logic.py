@@ -87,9 +87,9 @@ def main_business_logic(symbol,escape_accounts,coinmarketcap_symbol):
 
     # Draw the kline data from coinmarketcap
     df,df_date = coinmarketcap_data(coinmarketcap_symbol)
-    price_trace = {'x':df_date,'y':df['price_btc'].values.tolist(),'name':"Price BTC","yaxis":'y2'}
+    price_trace = {'x':df_date,'y':df['price_usd'].values.tolist(),'name':"Price USD","yaxis":'y2'}
     market_cap_trace = {'x':df_date,'y':df['market_cap'].values.tolist(),'name':"MarketCap"}
-    volume_trace = {'x':df_date,'y':df['volume_usd'].values.tolist(),'name':"Trading Volume(USD)"}
+    volume_trace = {'x':df_date,'y':df['volume_usd'].values.tolist(),'name':"Trading Volume(USD)","yaxis":'y2'}
 
     deposit_trace = {"x":X,"y":deposit_trace_y,"name":"Exchange Deposit Amount"}
     withdraw_trace = {"x":X,"y":withdraw_trace_y,"name":"Exchange Withdraw Amount"}

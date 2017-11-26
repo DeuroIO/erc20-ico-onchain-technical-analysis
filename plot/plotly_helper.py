@@ -25,10 +25,10 @@ def plot_using_plotly(title,traces):
       },
       "yaxis": {
         "autorange": True,
-        "title": "Amount"
+        "title": "Token Amount"
       },
       "yaxis2":{
-        "title":'Price',
+        "title":'Price(USD)',
         "overlaying":'y',
         "side":'right'
         }
