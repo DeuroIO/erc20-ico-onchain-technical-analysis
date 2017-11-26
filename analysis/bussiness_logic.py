@@ -3,6 +3,7 @@ sys.path.insert(0,'..')
 from data.whale_data import find_exchange_txs
 from plot.plotly_helper import plot_using_plotly
 from .calculate_holding_amount import calculate_holding_amount
+from .coinmarketcap_draw import coinmarketcap_data
 
 in_type = "IN"
 out_type = "OUT"
@@ -35,7 +36,7 @@ def update_y_daily_array(X,y,timestamp,amount):
     y[target_index] += amount
     return y
 
-def main_business_logic(symbol,escape_accounts):
+def main_business_logic(symbol,escape_accounts,coinmarketcap_symbol):
     txs = find_exchange_txs()
 
     # 找到最早的交易时间
@@ -85,19 +86,19 @@ def main_business_logic(symbol,escape_accounts):
         exchange_remain_amount_y[i] = deposit_trace_y[i] - withdraw_trace_y[i]
 
     # Draw the kline data from coinmarketcap
-    # df['avg'] = df[['close', 'high','low','open']].mean(axis=1)
-
-    # price_trace = {'x':df_date,'y':df['avg'].values.tolist(),'name':"Price BTC","yaxis":'y2'}
-    # volume_trace = {'x':df_date,'y':df['volume'].values.tolist(),'name':"Trading Volume"}
+    df,df_date = coinmarketcap_data(coinmarketcap_symbol)
+    price_trace = {'x':df_date,'y':df['price_btc'].values.tolist(),'name':"Price BTC","yaxis":'y2'}
+    market_cap_trace = {'x':df_date,'y':df['market_cap'].values.tolist(),'name':"MarketCap"}
+    volume_trace = {'x':df_date,'y':df['volume_usd'].values.tolist(),'name':"Trading Volume(USD)"}
 
     deposit_trace = {"x":X,"y":deposit_trace_y,"name":"Exchange Deposit Amount"}
     withdraw_trace = {"x":X,"y":withdraw_trace_y,"name":"Exchange Withdraw Amount"}
     exchange_remain_amount_trace = {"x":X,"y":exchange_remain_amount_y,"name":"Exchange Remain Amount"}
+
     holding_amount_y = calculate_holding_amount(X,escape_accounts)
     holding_amount_trace = {"x":X,"y":holding_amount_y,"name":"Top 50 {} Holder Holding Amount".format(symbol)}
-    # plot_using_plotly("Total {} Exchange Analysis (Bittrex, Bitfinex, Binance, Poloniex,liqui.io)".format(symbol),[deposit_trace,withdraw_trace,exchange_remain_amount_trace,holding_amount_trace,price_trace,volume_trace])
-    plot_using_plotly("Total {} Exchange Analysis (Bittrex, Bitfinex, Binance, Poloniex,liqui.io)".format(symbol),[deposit_trace,withdraw_trace,exchange_remain_amount_trace,holding_amount_trace])
+    plot_using_plotly("Total {} Exchange Analysis (Bittrex, Bitfinex, Binance, Poloniex,liqui.io, Etherdelta)".format(symbol),[deposit_trace,withdraw_trace,exchange_remain_amount_trace,holding_amount_trace,price_trace,market_cap_trace,volume_trace])
 
     deposit_trace = {"x":X,"y":deposit_daily_trace_y,"name":"Exchange Deposit Amount"}
     withdraw_trace = {"x":X,"y":withdraw_daily_trace_y,"name":"Exchange Withdraw Amount"}
-    plot_using_plotly("Hourly {} Exchange Analysis (Bittrex, Bitfinex, Binance, Poloniex,liqui.io)".format(symbol),[deposit_trace,withdraw_trace])
+    plot_using_plotly("Hourly {} Exchange Analysis (Bittrex, Bitfinex, Binance, Poloniex,liqui.io, Etherdelta)".format(symbol),[deposit_trace,withdraw_trace,price_trace,market_cap_trace,volume_trace])
