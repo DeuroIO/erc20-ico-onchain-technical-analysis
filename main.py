@@ -30,6 +30,10 @@ symbol = 'MTL'
 coinmarketcap_symbol = 'metal'
 Watch_addr = "0xF433089366899D83a9f26A773D59ec7eCF30355e"
 
+symbol = 'ADX'
+coinmarketcap_symbol = 'adx-net'
+Watch_addr = '0x4470BB87d77b963A013DB939BE332f927f2b992e'
+
 #exchange_accounts Poloniex
 exchange_accounts = ['0xfbb1b73c4f0bda4f67dca266ce6ef42f520fbb98','0xe94b04a0fed112f3664e45adb2b8915693dd5ff3', #Bittrex
 '0x1151314c646ce4e0efd76d1af4760ae66a9fe30f','0xcafb10ee663f465f9d10588ac44ed20ed608c11e','0x7180EB39A6264938FDB3EfFD7341C4727c382153', '0x7727e5113d1d161373623e5f49fd568b4f543a9e','0x4fdd5eb2fb260149a3903859043e962ab89d8ed4',#Bitfinex
