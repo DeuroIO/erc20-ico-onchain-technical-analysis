@@ -103,4 +103,4 @@ def main_business_logic(symbol,escape_accounts,coinmarketcap_symbol):
     deposit_trace = {"x":X,"y":deposit_daily_trace_y,"name":"Exchange Deposit Amount(Token)"}
     withdraw_trace = {"x":X,"y":withdraw_daily_trace_y,"name":"Exchange Withdraw Amount(Token)"}
     exchange_daily_remain_amount_trace = {"x":X,"y":exchange_daily_remain_amount_y,"name":"Exchange Daily Remain Amount(Token)"}
-    plot_using_plotly("Hourly {} Exchange Analysis (Bittrex, Bitfinex, Binance, Poloniex,liqui.io, Etherdelta)".format(symbol),[deposit_trace,withdraw_trace,exchange_daily_remain_amount_trace,price_trace])
+    plot_using_plotly("Hourly {} Exchange Analysis (Bittrex, Bitfinex, Binance, Poloniex,liqui.io, Etherdelta)".format(symbol),[deposit_trace,exchange_daily_remain_amount_trace,price_trace])
