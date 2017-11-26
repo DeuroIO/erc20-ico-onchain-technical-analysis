@@ -73,11 +73,11 @@ def calculate_holding_amount(X,escape_accounts):
             continue
 
         #在所有OUT账号上做BFS
-        top_holder_type = perform_bfs_on_accounts(out_txs,top_holder_type,acc)
-
-        #在所有IN账号上做BFS
-        in_txs = [item for item in tx if item[2] == 'IN']
-        top_holder_type = perform_bfs_on_accounts(in_txs,top_holder_type,acc,m_type='IN')
+        # top_holder_type = perform_bfs_on_accounts(out_txs,top_holder_type,acc)
+        #
+        # #在所有IN账号上做BFS
+        # in_txs = [item for item in tx if item[2] == 'IN']
+        # top_holder_type = perform_bfs_on_accounts(in_txs,top_holder_type,acc,m_type='IN')
 
     # build all traxe Y: holding_amount, deposit_amount, withdraw_amount
     amount_trace_y = [0] * len(X)
