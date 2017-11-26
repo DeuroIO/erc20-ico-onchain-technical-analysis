@@ -2,10 +2,6 @@ from analysis.bussiness_logic import main_business_logic
 import data.whale_data as wd
 import sys
 
-symbol = 'MTL'
-coinmarketcap_symbol = 'metal'
-Watch_addr = "0xF433089366899D83a9f26A773D59ec7eCF30355e"
-
 symbol = 'KNC'
 coinmarketcap_symbol = 'kyber-network'
 Watch_addr = "0xdd974d5c2e2928dea5f71b9825b8b646686bd200"
@@ -29,6 +25,10 @@ Watch_addr = "0x744d70fdbe2ba4cf95131626614a1763df805b9e"
 symbol = 'CVC'
 coinmarketcap_symbol = 'civic'
 Watch_addr = "0x41e5560054824ea6b0732e656e3ad64e20e94e45"
+
+symbol = 'MTL'
+coinmarketcap_symbol = 'metal'
+Watch_addr = "0xF433089366899D83a9f26A773D59ec7eCF30355e"
 
 #exchange_accounts Poloniex
 exchange_accounts = ['0xfbb1b73c4f0bda4f67dca266ce6ef42f520fbb98','0xe94b04a0fed112f3664e45adb2b8915693dd5ff3', #Bittrex
