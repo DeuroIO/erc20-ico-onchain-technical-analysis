@@ -2,10 +2,6 @@ from analysis.bussiness_logic import main_business_logic
 import data.whale_data as wd
 import sys
 
-symbol = 'SNT'
-coinmarketcap_symbol = 'status'
-Watch_addr = "0x744d70fdbe2ba4cf95131626614a1763df805b9e"
-
 symbol = 'CVC'
 coinmarketcap_symbol = 'civic'
 Watch_addr = "0x41e5560054824ea6b0732e656e3ad64e20e94e45"
@@ -29,6 +25,10 @@ Watch_addr = "0x255aa6df07540cb5d3d297f0d0d4d84cb52bc8e6"
 symbol = 'OMG'
 coinmarketcap_symbol = 'omisego'
 Watch_addr = "0xd26114cd6EE289AccF82350c8d8487fedB8A0C07"    #OmeisGo
+
+symbol = 'SNT'
+coinmarketcap_symbol = 'status'
+Watch_addr = "0x744d70fdbe2ba4cf95131626614a1763df805b9e"
 
 #exchange_accounts Poloniex
 exchange_accounts = ['0xfbb1b73c4f0bda4f67dca266ce6ef42f520fbb98','0xe94b04a0fed112f3664e45adb2b8915693dd5ff3', #Bittrex
