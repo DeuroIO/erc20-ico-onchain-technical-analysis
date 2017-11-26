@@ -2,10 +2,6 @@ from analysis.bussiness_logic import main_business_logic
 import data.whale_data as wd
 import sys
 
-symbol = 'ZRX'
-coinmarketcap_symbol = '0x'
-Watch_addr = "0xe41d2489571d322189246dafa5ebde1f4699f498"
-
 symbol = 'RDN'
 coinmarketcap_symbol = 'raiden-network-token'
 Watch_addr = "0x255aa6df07540cb5d3d297f0d0d4d84cb52bc8e6"
@@ -33,6 +29,10 @@ Watch_addr = '0x4470BB87d77b963A013DB939BE332f927f2b992e'
 symbol = 'KNC'
 coinmarketcap_symbol = 'kyber-network'
 Watch_addr = "0xdd974d5c2e2928dea5f71b9825b8b646686bd200"
+
+symbol = 'ZRX'
+coinmarketcap_symbol = '0x'
+Watch_addr = "0xe41d2489571d322189246dafa5ebde1f4699f498"
 
 #exchange_accounts Poloniex
 exchange_accounts = ['0xfbb1b73c4f0bda4f67dca266ce6ef42f520fbb98','0xe94b04a0fed112f3664e45adb2b8915693dd5ff3', #Bittrex
