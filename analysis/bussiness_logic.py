@@ -69,6 +69,7 @@ def main_business_logic(symbol,escape_accounts,coinmarketcap_symbol):
     # Daily Stat
     deposit_daily_trace_y = [0] * len(X)
     withdraw_daily_trace_y = [0] * len(X)
+    exchange_daily_remain_amount_y = [0] * len(X)
 
     for holder in txs:
         holder_txs = txs[holder]
@@ -84,6 +85,7 @@ def main_business_logic(symbol,escape_accounts,coinmarketcap_symbol):
 
     for i in range(0,len(X)):
         exchange_remain_amount_y[i] = deposit_trace_y[i] - withdraw_trace_y[i]
+        exchange_daily_remain_amount_y[i] = deposit_daily_trace_y[i] - withdraw_daily_trace_y[i]
 
     # Draw the kline data from coinmarketcap
     df,df_date = coinmarketcap_data(coinmarketcap_symbol)
@@ -101,4 +103,5 @@ def main_business_logic(symbol,escape_accounts,coinmarketcap_symbol):
 
     deposit_trace = {"x":X,"y":deposit_daily_trace_y,"name":"Exchange Deposit Amount"}
     withdraw_trace = {"x":X,"y":withdraw_daily_trace_y,"name":"Exchange Withdraw Amount"}
-    plot_using_plotly("Hourly {} Exchange Analysis (Bittrex, Bitfinex, Binance, Poloniex,liqui.io, Etherdelta)".format(symbol),[deposit_trace,withdraw_trace,price_trace])
+    exchange_daily_remain_amount_trace = {"x":X,"y":exchange_daily_remain_amount_y,"name":"Exchange Daily Remain Amount"}
+    plot_using_plotly("Hourly {} Exchange Analysis (Bittrex, Bitfinex, Binance, Poloniex,liqui.io, Etherdelta)".format(symbol),[deposit_trace,withdraw_trace,exchange_daily_remain_amount_trace,price_trace])
