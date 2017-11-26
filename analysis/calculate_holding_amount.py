@@ -2,7 +2,6 @@ import sys
 sys.path.insert(0,'..')
 from data.whale_data import find_whale_account_token_tx,exchnage_accounts
 from data.html_helper import check_if_address_name_exists
-from db.amazon_db import check_for_address_name
 from data.whale_eth_tx_data import *
 from data.whale_token_tx_data import identify_investor_type_token
 
@@ -39,10 +38,6 @@ def perform_bfs_on_accounts(out_txs,top_holder_type,acc,m_type='OUT'):
     unique_out = list(unique_out)[:5]
     for out in unique_out:
         print("\t"+out)
-        out_scan_name,source = check_for_address_name(out)
-        if out_scan_name != "":
-            print("\t\t{}".format(out_scan_name))
-            continue
         if out not in all_acc_types:
             investor_type = identify_investor_type(out)
             if investor_type == affliate_type:
@@ -60,19 +55,11 @@ def perform_bfs_on_accounts(out_txs,top_holder_type,acc,m_type='OUT'):
     return top_holder_type
 
 def calculate_holding_amount(X,escape_accounts):
-    txs = find_whale_account_token_tx()
+    txs = find_whale_account_token_tx(escape_accounts)
     top_holder_type = dict()
 
     for acc in txs:
         print(acc)
-
-        scan_name = check_if_address_name_exists(acc)
-        if scan_name != "":
-            print("{}".format(scan_name))
-            continue
-
-        a_name,source = check_for_address_name(acc)
-        if a_name != "": print("{}".format(a_name))
         tx = txs[acc]
 
         #如果当前账户从来没有向外打过token,ignore
@@ -101,7 +88,7 @@ def calculate_holding_amount(X,escape_accounts):
         if holder not in top_holder_type:
             print("{} not identified! ".format(holder))
             continue
-        
+
         holder_type = top_holder_type[holder]
         holder_txs = txs[holder]
         print("{} {}".format(holder,holder_type))
