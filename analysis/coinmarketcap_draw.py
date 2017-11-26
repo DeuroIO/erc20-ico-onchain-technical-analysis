@@ -2,6 +2,7 @@ import requests
 import pandas as pd
 from dateutil.parser import parse
 import numpy as np
+import datetime
 
 def coinmarketcap_data(symbol):
     url = 'https://graphs.coinmarketcap.com/currencies/{}/'.format(symbol)
@@ -31,7 +32,12 @@ def coinmarketcap_data(symbol):
     df['volume_usd'] = se.values
     df['volume_usd'] = df['volume_usd'].astype('float64')
 
-    return (df,df.index.values)
+    times = df.index.values
+    t_arr = []
+    for time in times:
+        t = datetime.datetime.utcfromtimestamp(time.tolist()/1e9)
+        t_arr.append(t)
+    return (df,t_arr)
 
 if __name__ == "__main__":
     df,times = coinmarketcap_data('0x')
