@@ -31,7 +31,8 @@ def coinmarketcap_data(symbol):
     se = pd.Series(volume_usd)
     df['volume_usd'] = se.values
     df['volume_usd'] = df['volume_usd'].astype('float64')
-
+    df['volume_token'] = df['volume_usd'] / df['price_usd']
+    
     times = df.index.values
     t_arr = []
     for time in times:
