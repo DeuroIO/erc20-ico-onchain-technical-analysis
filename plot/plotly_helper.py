@@ -37,5 +37,6 @@ def plot_using_plotly(title,traces):
     plot_url = plot_helper(fig)
 
     print(title + " --- " + plot_url)
+    return plot_url
 
 # plot_using_plotly("RDN Top Investor",[trace1,trace2,trace3])

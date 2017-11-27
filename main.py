@@ -22,7 +22,7 @@ def main_func(symbol,Watch_addr,coinmarketcap_symbol):
     escape_accounts = list(exchange_accounts)
     escape_accounts.append("0xead6be34ce315940264519f250d8160f369fa5cd") #ZRX bot
 
-    main_business_logic(symbol,escape_accounts,coinmarketcap_symbol)
+    return main_business_logic(symbol,escape_accounts,coinmarketcap_symbol)
 
 if __name__ == "__main__":
     data = {
@@ -35,7 +35,18 @@ if __name__ == "__main__":
         'ZRX': ('0x','0xe41d2489571d322189246dafa5ebde1f4699f498'),
         'RDN': ('raiden-network-token','0x255aa6df07540cb5d3d297f0d0d4d84cb52bc8e6')
     }
+    plot_dict = dict()
 
-    symbol = sys.argv[1]
-    coin_symbol,Watch_addr = data[symbol]
-    main_func(symbol,Watch_addr,coin_symbol)
+    for symbol in data:
+        coin_symbol,Watch_addr = data[symbol]
+        print("{} {} {}".format(symbol,coin_symbol,Watch_addr))
+        total_plot,hour_plot = main_func(symbol,Watch_addr,coin_symbol)
+        print(total_plot)
+        print(hour_plot)
+        plot_dict[symbol] = (total_plot,hour_plot)
+
+    for symbol in plot_dict:
+        coin_symbol,Watch_addr = data[symbol]
+        print("{} {} {}".format(symbol,coin_symbol,Watch_addr))
+        (total_plot,hour_plot) = plot_dict[symbol]
+        print("\t{}\n\t{}\n".format(total_plot,hour_plot))
