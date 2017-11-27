@@ -2,38 +2,6 @@ from analysis.bussiness_logic import main_business_logic
 import data.whale_data as wd
 import sys
 
-symbol = 'OMG'
-coinmarketcap_symbol = 'omisego'
-Watch_addr = "0xd26114cd6EE289AccF82350c8d8487fedB8A0C07"    #OmeisGo
-
-symbol = 'SNT'
-coinmarketcap_symbol = 'status'
-Watch_addr = "0x744d70fdbe2ba4cf95131626614a1763df805b9e"
-
-symbol = 'CVC'
-coinmarketcap_symbol = 'civic'
-Watch_addr = "0x41e5560054824ea6b0732e656e3ad64e20e94e45"
-
-symbol = 'MTL'
-coinmarketcap_symbol = 'metal'
-Watch_addr = "0xF433089366899D83a9f26A773D59ec7eCF30355e"
-
-symbol = 'ADX'
-coinmarketcap_symbol = 'adx-net'
-Watch_addr = '0x4470BB87d77b963A013DB939BE332f927f2b992e'
-
-symbol = 'KNC'
-coinmarketcap_symbol = 'kyber-network'
-Watch_addr = "0xdd974d5c2e2928dea5f71b9825b8b646686bd200"
-
-symbol = 'ZRX'
-coinmarketcap_symbol = '0x'
-Watch_addr = "0xe41d2489571d322189246dafa5ebde1f4699f498"
-
-symbol = 'RDN'
-coinmarketcap_symbol = 'raiden-network-token'
-Watch_addr = "0x255aa6df07540cb5d3d297f0d0d4d84cb52bc8e6"
-
 #exchange_accounts
 exchange_accounts = ['0xfbb1b73c4f0bda4f67dca266ce6ef42f520fbb98','0xe94b04a0fed112f3664e45adb2b8915693dd5ff3', #Bittrex
 '0x1151314c646ce4e0efd76d1af4760ae66a9fe30f','0xcafb10ee663f465f9d10588ac44ed20ed608c11e','0x7180EB39A6264938FDB3EfFD7341C4727c382153', '0x7727e5113d1d161373623e5f49fd568b4f543a9e','0x4fdd5eb2fb260149a3903859043e962ab89d8ed4',#Bitfinex
@@ -46,10 +14,28 @@ exchange_accounts = ['0xfbb1b73c4f0bda4f67dca266ce6ef42f520fbb98','0xe94b04a0fed
 ]
 exchange_accounts = [x.lower() for x in exchange_accounts]
 
-wd.Watch_addr = Watch_addr
-wd.exchnage_accounts = exchange_accounts
 
-escape_accounts = list(exchange_accounts)
-escape_accounts.append("0xead6be34ce315940264519f250d8160f369fa5cd") #ZRX bot
+def main_func(symbol,Watch_addr,coinmarketcap_symbol):
+    wd.Watch_addr = Watch_addr
+    wd.exchnage_accounts = exchange_accounts
 
-main_business_logic(symbol,escape_accounts,coinmarketcap_symbol)
+    escape_accounts = list(exchange_accounts)
+    escape_accounts.append("0xead6be34ce315940264519f250d8160f369fa5cd") #ZRX bot
+
+    main_business_logic(symbol,escape_accounts,coinmarketcap_symbol)
+
+if __name__ == "__main__":
+    data = {
+        "OMG": ('omisego','0xd26114cd6EE289AccF82350c8d8487fedB8A0C07'),
+        'SNT': ('status','0x744d70fdbe2ba4cf95131626614a1763df805b9e'),
+        'CVC': ('civic','0x41e5560054824ea6b0732e656e3ad64e20e94e45'),
+        'MTL': ('metal','0xF433089366899D83a9f26A773D59ec7eCF30355e'),
+        'ADX': ('adx-net','0x4470BB87d77b963A013DB939BE332f927f2b992e'),
+        'KNC': ('kyber-network','0xdd974d5c2e2928dea5f71b9825b8b646686bd200'),
+        'ZRX': ('0x','0xe41d2489571d322189246dafa5ebde1f4699f498'),
+        'RDN': ('raiden-network-token','0x255aa6df07540cb5d3d297f0d0d4d84cb52bc8e6')
+    }
+
+    symbol = sys.argv[1]
+    coin_symbol,Watch_addr = data[symbol]
+    main_func(symbol,Watch_addr,coin_symbol)
