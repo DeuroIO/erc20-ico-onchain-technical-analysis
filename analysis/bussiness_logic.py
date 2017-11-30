@@ -103,7 +103,7 @@ def main_business_logic(symbol,escape_accounts,coinmarketcap_symbol):
     # holding_amount_trace = {"x":X,"y":current_top_50_holding_amount_y,"name":"Top 50 {} Holder Holding Amount(Token)".format(symbol)}
     first_plot = plot_using_plotly("Total {} Exchange Analysis (Bittrex, Bitfinex, Binance, Poloniex,liqui.io, Etherdelta, huobi.pro, CEX.com)".format(symbol),[deposit_trace,withdraw_trace,exchange_remain_amount_trace,price_trace,volume_trace])
 
-    all_whale_txs = find_whale_account_token_tx(escape_accounts,2,2)
+    all_whale_txs = find_whale_account_token_tx(escape_accounts,2,20)
     for acc in whale_txs:
         if acc not in all_whale_txs:
             all_whale_txs[acc] = whale_txs[acc]
