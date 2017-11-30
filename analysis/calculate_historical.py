@@ -1,7 +1,6 @@
 import operator
 import sys
 sys.path.insert(0,'..')
-from db.amazon_db import check_for_address_name
 
 in_type = "IN"
 out_type = "OUT"
