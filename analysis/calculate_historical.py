@@ -1,4 +1,7 @@
 import operator
+import sys
+sys.path.insert(0,'..')
+from db.amazon_db import check_for_address_name
 
 in_type = "IN"
 out_type = "OUT"
@@ -51,10 +54,25 @@ def calculate_top_50_token_moving_average(top_50_holding_values):
         for acc in accs: curr_sum += accs[acc]
         curr_sum /= 50
         top_50_token_moving_average_trace.append(curr_sum)
-        print("{} {}".format(t,curr_sum))
     return top_50_token_moving_average_trace
+
+def calculate_top_50_list_and_token_amount_change(top_50_holding_values):
+    top_50_list_and_token_amount_change_trace = []
+    unique_acc_set = set()
+
+    for t in top_50_holding_values:
+        accs = top_50_holding_values[t]
+        for acc in accs:
+            if acc not in unique_acc_set:
+                unique_acc_set.add(acc)
+                acc_name = check_for_address_name(acc)
+                top_50_list_and_token_amount_change_trace.append({"name":acc_name,'x':[t],'y':[accs[acc]]})
+            else:
+                for json in top_50_list_and_token_amount_change_trace:
+                    acc_name = check_for_address_name(acc)
+                    if json['name'] == acc_name:
+                        json['x'].append(t)
+                        json['y'].append(accs[acc])
+
+    return top_50_list_and_token_amount_change_trace
 # def calculate_top_50_holding_token_amount(acc_holding_values_dict):
-#
-#
-#
-# def calculate_top_50_list_and_token_amount_change(acc_holding_values_dict):

@@ -39,4 +39,26 @@ def plot_using_plotly(title,traces):
     print(title + " --- " + plot_url)
     return plot_url
 
+def plot_top_50_list_using_plotly(title,traces):
+    data = Data(traces)
+    layout = {
+      "autosize": True,
+      "height": 1000,
+      "showlegend": True,
+      "title": title,
+      "width": 2000,
+      "xaxis": {
+        "autorange": True,
+        "title": "Time (days)",
+      },
+      "yaxis": {
+        "autorange": True,
+        "title": "Amount"
+      }
+    }
+    fig = Figure(data=data, layout=layout)
+    plot_url = plot_helper(fig)
+    
+    print(title + " --- " + plot_url)
+    return plot_url
 # plot_using_plotly("RDN Top Investor",[trace1,trace2,trace3])
