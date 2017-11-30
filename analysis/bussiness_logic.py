@@ -122,10 +122,10 @@ def main_business_logic(symbol,escape_accounts,coinmarketcap_symbol):
     exchange_token_moving_average_trace = calculate_top_50_token_moving_average(exchange_holding_values)
     exchange_list_and_token_amount_change_trace = calculate_top_50_list_and_token_amount_change(exchange_holding_values,escape_accounts,is_exchange=True)
     exchange_list_and_token_amount_change_trace.append(price_trace)
-    exchnage_plot = plot_using_plotly("Exchange token amount",exchange_list_and_token_amount_change_trace)
+    exchange_plot = plot_using_plotly("Exchange token amount",exchange_list_and_token_amount_change_trace)
 
     deposit_trace = {"x":X,"y":deposit_daily_trace_y,"name":"Exchange Deposit Amount(Token)"}
     withdraw_trace = {"x":X,"y":withdraw_daily_trace_y,"name":"Exchange Withdraw Amount(Token)"}
     exchange_daily_remain_amount_trace = {"x":X,"y":exchange_daily_remain_amount_y,"name":"Exchange Daily Remain Amount(Token)"}
     second_plot = plot_using_plotly("Hourly {} Exchange Analysis (Bittrex, Bitfinex, Binance, Poloniex,liqui.io, Etherdelta, huobi.pro, CEX.com)".format(symbol),[deposit_trace,exchange_daily_remain_amount_trace,price_trace])
-    return (first_plot,second_plot,plot_top_50_token_amount,exchnage_plot,top_50_token_ma_trace)
+    return ({"total_analysis":first_plot,"hourly analysis":second_plot,"plot_top_50_token_amount":plot_top_50_token_amount,"exchange_plot":exchange_plot,"top_50_token_ma_trace":top_50_token_ma_trace})
