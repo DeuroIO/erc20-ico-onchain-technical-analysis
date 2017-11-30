@@ -66,7 +66,7 @@ def calculate_top_50_list_and_token_amount_change(top_50_holding_values):
         counter = 0
         for acc in accs:
             counter += 1
-            if counter > 30: break
+            if counter > 10: break
             if acc not in unique_acc_set:
                 unique_acc_set.add(acc)
                 acc_name = check_for_address_name(acc)
