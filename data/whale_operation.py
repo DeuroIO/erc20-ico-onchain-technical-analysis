@@ -1,4 +1,7 @@
-from .html_helper import get_total_number_of_page,get_html_by_url
+if __name__ == "__main__":
+    from html_helper import get_total_number_of_page,get_html_by_url
+else:
+    from .html_helper import get_total_number_of_page,get_html_by_url
 from dateutil import parser
 from joblib import Parallel, delayed
 import multiprocessing
@@ -67,5 +70,5 @@ def find_whale_txs(token_address,contract_address,start_page=1,end_page=500):
     return tx_arrs
 
 if __name__ == "__main__":
-    results = find_whale_txs('0x255aa6df07540cb5d3d297f0d0d4d84cb52bc8e6','0x8d12a197cb00d4747a1fe03395095ce2a5cc6819',1,5)
+    results = find_whale_txs('0x255aa6df07540cb5d3d297f0d0d4d84cb52bc8e6','0x0a690f134c0f7deec5e70dc56793a00c3624c0a0',1,5)
     print(results)

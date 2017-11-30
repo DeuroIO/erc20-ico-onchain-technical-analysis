@@ -3,7 +3,9 @@ sys.path.insert(0,'..')
 from data.whale_data import find_exchange_txs
 from plot.plotly_helper import plot_using_plotly
 from .calculate_holding_amount import calculate_holding_amount
+from .calculate_historical import calculate_historical_holders,find_top_50_over_time_helper,calculate_top_50_token_moving_average
 from .coinmarketcap_draw import coinmarketcap_data
+from data.whale_data import find_whale_account_token_tx
 
 in_type = "IN"
 out_type = "OUT"
@@ -96,12 +98,21 @@ def main_business_logic(symbol,escape_accounts,coinmarketcap_symbol):
     withdraw_trace = {"x":X,"y":withdraw_trace_y,"name":"Exchange Withdraw Amount(Token)"}
     exchange_remain_amount_trace = {"x":X,"y":exchange_remain_amount_y,"name":"Exchange Remain Amount(Token)"}
 
-    holding_amount_y = calculate_holding_amount(X,escape_accounts)
-    holding_amount_trace = {"x":X,"y":holding_amount_y,"name":"Top 50 {} Holder Holding Amount(Token)".format(symbol)}
-    first_plot = plot_using_plotly("Total {} Exchange Analysis (Bittrex, Bitfinex, Binance, Poloniex,liqui.io, Etherdelta, huobi.pro, CEX.com)".format(symbol),[deposit_trace,withdraw_trace,exchange_remain_amount_trace,holding_amount_trace,price_trace,volume_trace])
+    txs = find_whale_account_token_tx(escape_accounts,1,1)
+    current_top_50_holding_amount_y = calculate_holding_amount(X,escape_accounts,txs)
+    holding_amount_trace = {"x":X,"y":current_top_50_holding_amount_y,"name":"Top 50 {} Holder Holding Amount(Token)".format(symbol)}
+
+    all_txs = find_whale_account_token_tx(escape_accounts,2,2)
+    for acc in txs:
+        if acc not in all_txs:
+            all_txs[acc] = txs[acc]
+    acc_holding_values_dict = calculate_historical_holders(all_txs,X)
+    top_50_holding_values = find_top_50_over_time_helper(acc_holding_values_dict)
+    top_50_token_moving_average_trace = calculate_top_50_token_moving_average(top_50_holding_values)
+    # first_plot = plot_using_plotly("Total {} Exchange Analysis (Bittrex, Bitfinex, Binance, Poloniex,liqui.io, Etherdelta, huobi.pro, CEX.com)".format(symbol),[deposit_trace,withdraw_trace,exchange_remain_amount_trace,holding_amount_trace,price_trace,volume_trace])
 
     deposit_trace = {"x":X,"y":deposit_daily_trace_y,"name":"Exchange Deposit Amount(Token)"}
     withdraw_trace = {"x":X,"y":withdraw_daily_trace_y,"name":"Exchange Withdraw Amount(Token)"}
     exchange_daily_remain_amount_trace = {"x":X,"y":exchange_daily_remain_amount_y,"name":"Exchange Daily Remain Amount(Token)"}
-    second_plot = plot_using_plotly("Hourly {} Exchange Analysis (Bittrex, Bitfinex, Binance, Poloniex,liqui.io, Etherdelta, huobi.pro, CEX.com)".format(symbol),[deposit_trace,exchange_daily_remain_amount_trace,price_trace])
-    return (first_plot,second_plot)
+    # second_plot = plot_using_plotly("Hourly {} Exchange Analysis (Bittrex, Bitfinex, Binance, Poloniex,liqui.io, Etherdelta, huobi.pro, CEX.com)".format(symbol),[deposit_trace,exchange_daily_remain_amount_trace,price_trace])
+    # return (first_plot,second_plot)

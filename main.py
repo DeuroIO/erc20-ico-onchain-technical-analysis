@@ -21,7 +21,7 @@ def main_func(symbol,Watch_addr,coinmarketcap_symbol):
 
     escape_accounts = list(exchange_accounts)
     escape_accounts.append("0xead6be34ce315940264519f250d8160f369fa5cd") #ZRX bot
-
+    escape_accounts.append("0x00c7122633a4ef0bc72f7d02456ee2b11e97561e") #Raidne Team
     return main_business_logic(symbol,escape_accounts,coinmarketcap_symbol)
 
 if __name__ == "__main__":
@@ -31,8 +31,8 @@ if __name__ == "__main__":
         # 'CVC': ('civic','0x41e5560054824ea6b0732e656e3ad64e20e94e45'),
         # 'MTL': ('metal','0xF433089366899D83a9f26A773D59ec7eCF30355e'),
         # 'ADX': ('adx-net','0x4470BB87d77b963A013DB939BE332f927f2b992e'),
-        'KNC': ('kyber-network','0xdd974d5c2e2928dea5f71b9825b8b646686bd200'),
-        'ZRX': ('0x','0xe41d2489571d322189246dafa5ebde1f4699f498'),
+        # 'KNC': ('kyber-network','0xdd974d5c2e2928dea5f71b9825b8b646686bd200'),
+        # 'ZRX': ('0x','0xe41d2489571d322189246dafa5ebde1f4699f498'),
         'RDN': ('raiden-network-token','0x255aa6df07540cb5d3d297f0d0d4d84cb52bc8e6')
     }
     plot_dict = dict()
