@@ -62,7 +62,7 @@ def calculate_top_50_list_and_token_amount_change(top_50_holding_values,escape_a
     for t in top_50_holding_values:
         accs = top_50_holding_values[t]
         for acc in accs:
-            if !is_exchange and acc in escape_accounts:
+            if not is_exchange and acc in escape_accounts:
                 continue
             if is_exchange and acc not in escape_accounts:
                 continue
