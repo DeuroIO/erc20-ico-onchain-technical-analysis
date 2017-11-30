@@ -1,7 +1,6 @@
 import boto3
 import sys
 sys.path.insert(0,'..')
-from data.html_helper import check_if_address_name_exists
 
 # Get the service resource.
 dynamodb = boto3.resource('dynamodb')
@@ -41,9 +40,4 @@ def check_for_address_name(address):
     if db_name is not None:
         return db_name
     else:
-        account_name = check_if_address_name_exists(address)
-        if account_name != "":
-            put_item(address,account_name)
-            return account_name
-        else:
-            return address
+        return address
