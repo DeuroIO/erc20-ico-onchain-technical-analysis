@@ -98,11 +98,11 @@ def main_business_logic(symbol,escape_accounts,coinmarketcap_symbol):
     withdraw_trace = {"x":X,"y":withdraw_trace_y,"name":"Exchange Withdraw Amount(Token)"}
     exchange_remain_amount_trace = {"x":X,"y":exchange_remain_amount_y,"name":"Exchange Remain Amount(Token)"}
 
-    txs = find_whale_account_token_tx(escape_accounts,1,1)
+    txs = find_whale_account_token_tx([],1,1)
     current_top_50_holding_amount_y = calculate_holding_amount(X,escape_accounts,txs)
     holding_amount_trace = {"x":X,"y":current_top_50_holding_amount_y,"name":"Top 50 {} Holder Holding Amount(Token)".format(symbol)}
 
-    all_txs = find_whale_account_token_tx(escape_accounts,2,2)
+    all_txs = find_whale_account_token_tx([],2,2)
     for acc in txs:
         if acc not in all_txs:
             all_txs[acc] = txs[acc]
