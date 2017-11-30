@@ -48,4 +48,4 @@ if __name__ == "__main__":
         print("{} {} {}".format(symbol,coin_symbol,Watch_addr))
         plots = plot_dict[symbol]
         for plot in plots:
-            print("\t{}\n".format(plot))
+            print("\t{} {}\n".format(plot,plots[plot]))
