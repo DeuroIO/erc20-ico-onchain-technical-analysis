@@ -98,20 +98,20 @@ def main_business_logic(symbol,escape_accounts,coinmarketcap_symbol):
     withdraw_trace = {"x":X,"y":withdraw_trace_y,"name":"Exchange Withdraw Amount(Token)"}
     exchange_remain_amount_trace = {"x":X,"y":exchange_remain_amount_y,"name":"Exchange Remain Amount(Token)"}
 
-    txs = find_whale_account_token_tx(escape_accounts,1,1)
-    current_top_50_holding_amount_y = calculate_holding_amount(X,escape_accounts,txs)
+    whale_txs = find_whale_account_token_tx(escape_accounts,1,1)
+    current_top_50_holding_amount_y = calculate_holding_amount(X,escape_accounts,whale_txs)
     holding_amount_trace = {"x":X,"y":current_top_50_holding_amount_y,"name":"Top 50 {} Holder Holding Amount(Token)".format(symbol)}
 
-    all_txs = find_whale_account_token_tx(escape_accounts,2,2)
-    for acc in txs:
+    all_whale_txs = find_whale_account_token_tx(escape_accounts,2,2)
+    for acc in whale_txs:
         if acc not in all_txs:
-            all_txs[acc] = txs[acc]
-    acc_holding_values_dict = calculate_historical_holders(all_txs,X)
+            all_whale_txs[acc] = whale_txs[acc]
+    acc_holding_values_dict = calculate_historical_holders(all_whale_txs,X)
     top_50_holding_values = find_top_50_over_time_helper(acc_holding_values_dict)
     top_50_token_moving_average_trace = calculate_top_50_token_moving_average(top_50_holding_values)
     top_50_list_and_token_amount_change_trace = calculate_top_50_list_and_token_amount_change(top_50_holding_values,escape_accounts)
     top_50_list_and_token_amount_change_trace.append(price_trace)
-    plot_top_50_list = plot_using_plotly("Top 50 List and their token amount",top_50_list_and_token_amount_change_trace)
+    plot_top_50_list = plot_using_plotly("Top 50 List and their token amount (without counting the exchange)",top_50_list_and_token_amount_change_trace)
     print(plot_top_50_list)
     # first_plot = plot_using_plotly("Total {} Exchange Analysis (Bittrex, Bitfinex, Binance, Poloniex,liqui.io, Etherdelta, huobi.pro, CEX.com)".format(symbol),[deposit_trace,withdraw_trace,exchange_remain_amount_trace,holding_amount_trace,price_trace,volume_trace])
 
