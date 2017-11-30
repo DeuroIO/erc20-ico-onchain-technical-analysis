@@ -41,12 +41,11 @@ if __name__ == "__main__":
         coin_symbol,Watch_addr = data[symbol]
         print("{} {} {}".format(symbol,coin_symbol,Watch_addr))
         plots = main_func(symbol,Watch_addr,coin_symbol)
-        for plot in plots:
-            print(plot)
-        plot_dict[symbol] = (total_plot,hour_plot)
+        plot_dict[symbol] = plots
 
     for symbol in plot_dict:
         coin_symbol,Watch_addr = data[symbol]
         print("{} {} {}".format(symbol,coin_symbol,Watch_addr))
-        (total_plot,hour_plot) = plot_dict[symbol]
-        print("\t{}\n\t{}\n".format(total_plot,hour_plot))
+        plots = plot_dict[symbol]
+        for plot in plots:
+            print("\t{}\n".format(plot))
