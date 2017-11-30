@@ -109,7 +109,7 @@ def main_business_logic(symbol,escape_accounts,coinmarketcap_symbol):
     acc_holding_values_dict = calculate_historical_holders(all_txs,X)
     top_50_holding_values = find_top_50_over_time_helper(acc_holding_values_dict)
     top_50_token_moving_average_trace = calculate_top_50_token_moving_average(top_50_holding_values)
-    top_50_list_and_token_amount_change_trace = calculate_top_50_list_and_token_amount_change(top_50_holding_values)
+    top_50_list_and_token_amount_change_trace = calculate_top_50_list_and_token_amount_change(top_50_holding_values,escape_accounts)
     top_50_list_and_token_amount_change_trace.append(price_trace)
     plot_top_50_list = plot_using_plotly("Top 50 List and their token amount",top_50_list_and_token_amount_change_trace)
     print(plot_top_50_list)
