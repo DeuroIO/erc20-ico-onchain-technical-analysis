@@ -75,5 +75,12 @@ def calculate_top_50_list_and_token_amount_change(top_50_holding_values,escape_a
                         json['x'].append(t)
                         json['y'].append(accs[acc])
 
+    if is_exchange:
+        new_return = []
+        for json in top_50_list_and_token_amount_change_trace:
+            y = json['y']
+            if y[-1] !=0:
+                new_return.append(json)
+        top_50_list_and_token_amount_change_trace = new_return
     return top_50_list_and_token_amount_change_trace
 # def calculate_top_50_holding_token_amount(acc_holding_values_dict):
