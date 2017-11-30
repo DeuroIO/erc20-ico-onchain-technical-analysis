@@ -64,7 +64,7 @@ def calculate_top_50_list_and_token_amount_change(top_50_holding_values):
         counter = 0
         for acc in accs:
             counter += 1
-            if counter > 40: break
+            if counter > 30: break
             if acc not in unique_acc_set:
                 unique_acc_set.add(acc)
                 top_50_list_and_token_amount_change_trace.append({"name":acc,'x':[t],'y':[accs[acc]]})
