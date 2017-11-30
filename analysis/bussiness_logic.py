@@ -111,8 +111,8 @@ def main_business_logic(symbol,escape_accounts,coinmarketcap_symbol):
     top_50_token_moving_average_trace = calculate_top_50_token_moving_average(top_50_holding_values)
     top_50_list_and_token_amount_change_trace = calculate_top_50_list_and_token_amount_change(top_50_holding_values)
 
-    plot_top_50_list = plot_using_plotly("Top 30 List and their token amount",top_50_list_and_token_amount_change_trace)
-    print(plot_top_50_list_using_plotly)
+    plot_top_50_list = plot_using_plotly("Top 30 List and their token amount",top_50_list_and_token_amount_change_trace.append(price_trace))
+    print(plot_top_50_list)
     # first_plot = plot_using_plotly("Total {} Exchange Analysis (Bittrex, Bitfinex, Binance, Poloniex,liqui.io, Etherdelta, huobi.pro, CEX.com)".format(symbol),[deposit_trace,withdraw_trace,exchange_remain_amount_trace,holding_amount_trace,price_trace,volume_trace])
 
     deposit_trace = {"x":X,"y":deposit_daily_trace_y,"name":"Exchange Deposit Amount(Token)"}
