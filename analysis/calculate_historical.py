@@ -55,14 +55,16 @@ def calculate_top_50_token_moving_average(top_50_holding_values):
         top_50_token_moving_average_trace.append(curr_sum)
     return top_50_token_moving_average_trace
 
-def calculate_top_50_list_and_token_amount_change(top_50_holding_values,escape_accounts):
+def calculate_top_50_list_and_token_amount_change(top_50_holding_values,escape_accounts,is_exchange=False):
     top_50_list_and_token_amount_change_trace = []
     unique_acc_set = set()
 
     for t in top_50_holding_values:
         accs = top_50_holding_values[t]
         for acc in accs:
-            if acc in escape_accounts:
+            if !is_exchange and acc in escape_accounts:
+                continue
+            if is_exchange and acc not in escape_accounts:
                 continue
             if acc not in unique_acc_set:
                 unique_acc_set.add(acc)
