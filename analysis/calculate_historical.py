@@ -59,23 +59,19 @@ def calculate_top_50_token_moving_average(top_50_holding_values):
 def calculate_top_50_list_and_token_amount_change(top_50_holding_values):
     top_50_list_and_token_amount_change_trace = []
     unique_acc_set = set()
-    acc_name_dict = dict()
 
     for t in top_50_holding_values:
         accs = top_50_holding_values[t]
         counter = 0
         for acc in accs:
             counter += 1
-            if counter > 10: break
+            if counter > 40: break
             if acc not in unique_acc_set:
                 unique_acc_set.add(acc)
-                acc_name = check_for_address_name(acc)
-                acc_name_dict[acc] = acc_name
-                top_50_list_and_token_amount_change_trace.append({"name":acc_name,'x':[t],'y':[accs[acc]]})
+                top_50_list_and_token_amount_change_trace.append({"name":acc,'x':[t],'y':[accs[acc]]})
             else:
                 for json in top_50_list_and_token_amount_change_trace:
-                    acc_name = acc_name_dict[acc]
-                    if json['name'] == acc_name:
+                    if json['name'] == acc:
                         json['x'].append(t)
                         json['y'].append(accs[acc])
 
