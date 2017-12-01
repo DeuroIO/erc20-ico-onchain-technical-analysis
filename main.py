@@ -39,7 +39,7 @@ def driver_to_run_main_func(data):
         plots = plot_dict[symbol]
         for plot in plots:
             print("\t{} {}\n".format(plot,plots[plot]))
-
+import time
 if __name__ == "__main__":
     data = {
         # "OMG": ('omisego','0xd26114cd6EE289AccF82350c8d8487fedB8A0C07'),
@@ -53,3 +53,4 @@ if __name__ == "__main__":
     }
     while True:
         driver_to_run_main_func(data)
+        time.sleep(30)   # Delay for 0.5 minute (30 seconds).
