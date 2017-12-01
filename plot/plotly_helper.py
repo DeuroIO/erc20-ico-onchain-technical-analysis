@@ -3,9 +3,9 @@ from plotly.graph_objs import *
 
 py.sign_in('gelei', 'SYLSznL3X1AeEV724w1q')
 
-def plot_helper(fig):
+def plot_helper(fig,title):
     try:
-        plot_url = py.plot(fig)
+        plot_url = py.plot(fig,filename=title)
         return plot_url
     except:
         print("failed to plot.retry...")
@@ -34,7 +34,7 @@ def plot_using_plotly(title,traces):
         }
     }
     fig = Figure(data=data, layout=layout)
-    plot_url = plot_helper(fig)
+    plot_url = plot_helper(fig,title)
 
     print(title + " --- " + plot_url)
     return plot_url
