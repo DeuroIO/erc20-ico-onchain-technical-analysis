@@ -24,7 +24,7 @@ def main_func(symbol,Watch_addr,coinmarketcap_symbol):
     escape_accounts.append("0x00c7122633a4ef0bc72f7d02456ee2b11e97561e") #Raidne Team
     return main_business_logic(symbol,escape_accounts,coinmarketcap_symbol)
 
-def driver_to_run_main_func():
+def driver_to_run_main_func(data):
     plot_dict = dict()
 
     for symbol in data:
@@ -52,4 +52,4 @@ if __name__ == "__main__":
         'RDN': ('raiden-network-token','0x255aa6df07540cb5d3d297f0d0d4d84cb52bc8e6')
     }
     while True:
-        driver_to_run_main_func()
+        driver_to_run_main_func(data)
