@@ -53,4 +53,4 @@ if __name__ == "__main__":
     }
     while True:
         driver_to_run_main_func(data)
-        time.sleep(30)   # Delay for 0.5 minute (30 seconds).
+        time.sleep(1800)   # Delay for 30 minutes.
