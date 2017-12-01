@@ -8,7 +8,8 @@ def plot_helper(fig,filename,trails=0,max_trail=5):
     try:
         plot_url = py.plot(fig,filename=filename)
         return plot_url
-    except:
+    except Exception as e:
+        print(e)
         print("failed to plot.retry...")
         return plot_helper(fig,filename,trails=trails+1)
 
