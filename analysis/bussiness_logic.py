@@ -105,7 +105,7 @@ def main_business_logic(symbol,escape_accounts,coinmarketcap_symbol):
                                     [deposit_trace,withdraw_trace,exchange_remain_amount_trace,price_trace,volume_trace],
                                     '{} Total'.format(symbol))
 
-    all_whale_txs = find_whale_account_token_tx(escape_accounts,2,20)
+    all_whale_txs = find_whale_account_token_tx(escape_accounts,2,2)
     for acc in whale_txs:
         if acc not in all_whale_txs:
             all_whale_txs[acc] = whale_txs[acc]
