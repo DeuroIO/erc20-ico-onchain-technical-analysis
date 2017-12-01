@@ -4,7 +4,7 @@ from plotly.graph_objs import *
 py.sign_in('gelei', 'SYLSznL3X1AeEV724w1q')
 
 def plot_helper(fig,filename,trails=0,max_trail=5):
-    if trarils >= max_trail: return ""
+    if trails >= max_trail: return ""
     try:
         plot_url = py.plot(fig,filename=filename)
         return plot_url
