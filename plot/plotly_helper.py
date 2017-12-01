@@ -3,13 +3,14 @@ from plotly.graph_objs import *
 
 py.sign_in('gelei', 'SYLSznL3X1AeEV724w1q')
 
-def plot_helper(fig,filename):
+def plot_helper(fig,filename,trails=0,max_trail=5):
+    if trarils >= max_trail: return ""
     try:
         plot_url = py.plot(fig,filename=filename)
         return plot_url
     except:
         print("failed to plot.retry...")
-        return plot_helper(fig,filename)
+        return plot_helper(fig,filename,trails=trails+1)
 
 def plot_using_plotly(title,traces,filename):
     data = Data(traces)
