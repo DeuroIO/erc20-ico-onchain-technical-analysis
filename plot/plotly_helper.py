@@ -3,15 +3,15 @@ from plotly.graph_objs import *
 
 py.sign_in('gelei', 'SYLSznL3X1AeEV724w1q')
 
-def plot_helper(fig,title):
+def plot_helper(fig,filename):
     try:
-        plot_url = py.plot(fig,filename=title)
+        plot_url = py.plot(fig,filename=filename)
         return plot_url
     except:
         print("failed to plot.retry...")
-        return plot_helper(fig)
+        return plot_helper(fig,filename)
 
-def plot_using_plotly(title,traces):
+def plot_using_plotly(title,traces,filename):
     data = Data(traces)
     layout = {
       "autosize": True,
@@ -34,7 +34,7 @@ def plot_using_plotly(title,traces):
         }
     }
     fig = Figure(data=data, layout=layout)
-    plot_url = plot_helper(fig,title)
+    plot_url = plot_helper(fig,filename)
 
     print(title + " --- " + plot_url)
     return plot_url
