@@ -20,11 +20,12 @@ def find_whale_account_token_tx(escape_accounts,start,end):
     acc_features = dict()
     for account in all_arr:
         counter += 1
-        print("{}/{} {}".format(counter,len(all_arr),account))
         if account in escape_accounts:
             continue
         else:
+            print("{}/{} {}".format(counter,len(all_arr),account))
             acc_features[account] = find_whale_txs(Watch_addr,account)
+            print("\tnumber of txs:{}".format(len(acc_features[account])))
     return acc_features
 
 def find_exchange_txs():
