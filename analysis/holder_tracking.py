@@ -11,8 +11,10 @@ def track_holder_number_over_time(acc_holding_values_dict):
     for timestmap in acc_holding_values_dict:
         number = 1
         t_dict = acc_holding_values_dict[timestmap]
+        print(timestamp)
         for acc in t_dict:
             if t_dict[acc] > MINIMUM_TOKEN_AMOUNT_REQUIRED:
                 number += 1
+                print("\t{}:{}".format(acc,t_dict[acc]))
         holder_number_over_time.append(number)
     return holder_number_over_time
