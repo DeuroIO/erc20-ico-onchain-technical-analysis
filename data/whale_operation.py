@@ -9,7 +9,6 @@ num_cores = int(multiprocessing.cpu_count() * 2 / 3)
 
 def find_whale_tx_helper(url):
     soup = get_html_by_url(url)
-    # print(soup)
     if soup is None:
         return []
     no_matching_exist = soup.find("font",{"color":"black"})

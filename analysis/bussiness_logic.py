@@ -5,7 +5,7 @@ from plot.plotly_helper import plot_using_plotly
 from .calculate_holding_amount import calculate_holding_amount
 from .calculate_historical import *
 from .coinmarketcap_draw import coinmarketcap_data
-from data.whale_data import find_whale_account_token_tx
+from data.whale_data import find_whale_account_token_tx,find_interstering_accounts
 from .holder_tracking import track_holder_number_over_time
 
 in_type = "IN"
@@ -110,7 +110,6 @@ def main_business_logic(symbol,escape_accounts,coinmarketcap_symbol):
     for acc in whale_txs:
         if acc not in all_whale_txs:
             all_whale_txs[acc] = whale_txs[acc]
-    print(all_whale_txs)
     acc_holding_values_dict = calculate_historical_holders(all_whale_txs,X)
     top_50_holding_values = find_top_50_over_time_helper(acc_holding_values_dict)
     top_50_list_and_token_amount_change_trace = calculate_top_50_list_and_token_amount_change(top_50_holding_values,escape_accounts)
@@ -133,10 +132,14 @@ def main_business_logic(symbol,escape_accounts,coinmarketcap_symbol):
     exchange_daily_remain_amount_trace = {"x":X,"y":exchange_daily_remain_amount_y,"name":"Exchange Daily Remain Amount(Token)"}
     second_plot = plot_using_plotly("Hourly {} Exchange Analysis (Bittrex, Bitfinex, Binance, Poloniex,liqui.io, Etherdelta, huobi.pro, CEX.com)".format(symbol),[deposit_trace,exchange_daily_remain_amount_trace,price_trace],'{} hourly'.format(symbol))
 
+    _,total_number_of_pages = find_interstering_accounts()
+    remaining_whale_data = find_whale_account_token_tx(escape_accounts,3,total_number_of_pages)
+    for acc in remaining_whale_data:
+        if acc not in all_whale_txs:
+            all_whale_txs[acc] = remaining_whale_data[acc]
+    acc_holding_values_dict = calculate_historical_holders(all_whale_txs,X)
     track_holder_number_over_time_y = track_holder_number_over_time(acc_holding_values_dict)
-    print(len(whale_txs))
-    print(len(all_whale_txs))
     track_holder_number_over_time_trace = {"x":X,"y":track_holder_number_over_time_y,"name":"Token Holder"}
-    plot_track_holder_number_over_time = plot_using_plotly("Token Holder Trace Overtime",[track_holder_number_over_time_trace,price_trace],'{} Holder'.format(symbol))
+    plot_track_holder_number_over_time = plot_using_plotly("{} Token Holder Trace Overtime".format(symbol),[track_holder_number_over_time_trace,price_trace],'{} Holder'.format(symbol))
 
     return ({"total_analysis":first_plot,"hourly analysis":second_plot,"plot_top_50_token_amount":plot_top_50_token_amount,"exchange_plot":exchange_plot,"top_50_token_ma_trace":top_50_token_ma_trace, "plot_track_holder_number_over_time":plot_track_holder_number_over_time})

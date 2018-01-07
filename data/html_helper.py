@@ -61,7 +61,7 @@ def find_tx_given_token_contract_address(contract_address,start_page,end_page):
         print(i)
         tx_arr = find_token_tx_helper("{}&p={}".format(url,i))
         tx_arrs = tx_arrs + tx_arr
-    return tx_arrs
+    return (tx_arrs,total_number_of_page)
 
 def check_if_address_name_exists(account):
     url = "https://etherscan.io/address/{}".format(account)
