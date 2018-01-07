@@ -4,7 +4,7 @@
 #           value:  dict
 #                   key:    account
 #                   value:  amount
-MINIMUM_TOKEN_AMOUNT_REQUIRED = 1
+MINIMUM_TOKEN_AMOUNT_REQUIRED = 0.0
 
 def track_holder_number_over_time(acc_holding_values_dict):
     holder_number_over_time = []
