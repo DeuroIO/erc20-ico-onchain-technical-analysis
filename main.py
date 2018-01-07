@@ -54,6 +54,4 @@ if __name__ == "__main__":
         # 'RDN': ('raiden-network-token','0x255aa6df07540cb5d3d297f0d0d4d84cb52bc8e6')
         'ELF' : ('aelf','0xbf2179859fc6D5BEE9Bf9158632Dc51678a4100e')
     }
-    while True:
-        driver_to_run_main_func(data)
-        time.sleep(1800)   # Delay for 30 minutes.
+    driver_to_run_main_func(data)
