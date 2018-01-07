@@ -12,7 +12,7 @@ def track_holder_number_over_time(acc_holding_values_dict):
         number = 1
         t_dict = acc_holding_values_dict[timestmap]
         for acc in t_dict:
-            if t_dict[acc] >= MINIMUM_TOKEN_AMOUNT_REQUIRED:
+            if t_dict[acc] > MINIMUM_TOKEN_AMOUNT_REQUIRED:
                 number += 1
         holder_number_over_time.append(number)
     return holder_number_over_time
