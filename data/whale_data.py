@@ -31,7 +31,7 @@ def find_whale_account_token_tx(escape_accounts,start,end):
                 print("\tnumber of txs:{}".format(num_txs))
                 num_txs = find_whale_txs(Watch_addr,account)
             acc_features[account] = num_txs
-        time.sleep(1)
+        time.sleep(0.2)
     return acc_features
 
 def find_exchange_txs():
