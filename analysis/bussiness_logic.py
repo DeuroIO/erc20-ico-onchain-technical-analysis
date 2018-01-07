@@ -110,6 +110,7 @@ def main_business_logic(symbol,escape_accounts,coinmarketcap_symbol):
     for acc in whale_txs:
         if acc not in all_whale_txs:
             all_whale_txs[acc] = whale_txs[acc]
+    print(all_whale_txs)
     acc_holding_values_dict = calculate_historical_holders(all_whale_txs,X)
     top_50_holding_values = find_top_50_over_time_helper(acc_holding_values_dict)
     top_50_list_and_token_amount_change_trace = calculate_top_50_list_and_token_amount_change(top_50_holding_values,escape_accounts)
