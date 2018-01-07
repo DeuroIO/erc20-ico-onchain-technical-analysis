@@ -134,6 +134,6 @@ def main_business_logic(symbol,escape_accounts,coinmarketcap_symbol):
 
     track_holder_number_over_time_y = track_holder_number_over_time(acc_holding_values_dict)
     track_holder_number_over_time_trace = {"x":X,"y":track_holder_number_over_time_y,"name":"Token Holder"}
-    plot_track_holder_number_over_time = plot_using_plotly("Token Holder Trace Overtime",[track_holder_number_over_time_trace],'{} Holder'.format(symbol))
+    plot_track_holder_number_over_time = plot_using_plotly("Token Holder Trace Overtime",[track_holder_number_over_time_trace,price_trace],'{} Holder'.format(symbol))
 
     return ({"total_analysis":first_plot,"hourly analysis":second_plot,"plot_top_50_token_amount":plot_top_50_token_amount,"exchange_plot":exchange_plot,"top_50_token_ma_trace":top_50_token_ma_trace, "plot_track_holder_number_over_time":plot_track_holder_number_over_time})
