@@ -133,6 +133,7 @@ def main_business_logic(symbol,escape_accounts,coinmarketcap_symbol):
     second_plot = plot_using_plotly("Hourly {} Exchange Analysis (Bittrex, Bitfinex, Binance, Poloniex,liqui.io, Etherdelta, huobi.pro, CEX.com)".format(symbol),[deposit_trace,exchange_daily_remain_amount_trace,price_trace],'{} hourly'.format(symbol))
 
     track_holder_number_over_time_y = track_holder_number_over_time(acc_holding_values_dict)
+    print(track_holder_number_over_time_y)
     track_holder_number_over_time_trace = {"x":X,"y":track_holder_number_over_time_y,"name":"Token Holder"}
     plot_track_holder_number_over_time = plot_using_plotly("Token Holder Trace Overtime",track_holder_number_over_time_trace,'{} Holder'.format(symbol))
 
