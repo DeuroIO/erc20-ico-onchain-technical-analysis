@@ -52,6 +52,6 @@ if __name__ == "__main__":
         # 'KNC': ('kyber-network','0xdd974d5c2e2928dea5f71b9825b8b646686bd200'),
         # 'ZRX': ('0x','0xe41d2489571d322189246dafa5ebde1f4699f498'),
         # 'RDN': ('raiden-network-token','0x255aa6df07540cb5d3d297f0d0d4d84cb52bc8e6')
-        'ELF' : ('aelf','0xbf2179859fc6D5BEE9Bf9158632Dc51678a4100e')
+        'GTO' : ('gifto','0xc5bbae50781be1669306b9e001eff57a2957b09d')
     }
     driver_to_run_main_func(data)
