@@ -24,6 +24,11 @@ def main_func(symbol,Watch_addr,coinmarketcap_symbol):
     escape_accounts.append("0x00c7122633a4ef0bc72f7d02456ee2b11e97561e") #Raidne Team
     escape_accounts.append("0x615ed6779507f223d04722d43ccc0cd871964e2a") #GTO Team
     escape_accounts.append("0xe16fd9b95758fe8f3a478ef9b750a64513bf2e80") # ICX team)
+    escape_accounts.append("0x6863424c64081d69a9f23f780bb3c73dddbf15f6") # THETA team)
+    escape_accounts.append("0x30993352B0e5a02A5ea2A7711FD7C97a4401D654") # Theta team
+    escape_accounts.append("0x03E130eaFAB61ca4D31923B4043db497a830D2bD") # Theta team
+    escape_accounts.append("0xb65Ad53b13B3c7a89527164Fe69CcD56FcEba1B9") # theta team
+    
     return main_business_logic(symbol,escape_accounts,coinmarketcap_symbol)
 
 def driver_to_run_main_func(data):
@@ -52,6 +57,7 @@ if __name__ == "__main__":
         # 'KNC': ('kyber-network','0xdd974d5c2e2928dea5f71b9825b8b646686bd200'),
         # 'ZRX': ('0x','0xe41d2489571d322189246dafa5ebde1f4699f498'),
         # 'RDN': ('raiden-network-token','0x255aa6df07540cb5d3d297f0d0d4d84cb52bc8e6')
-        'GTO' : ('gifto','0xc5bbae50781be1669306b9e001eff57a2957b09d')
+        #'GTO' : ('gifto','0xc5bbae50781be1669306b9e001eff57a2957b09d')
+        'THETA' : ('theta-token','0x3883f5e181fccaF8410FA61e12b59BAd963fb645')
     }
     driver_to_run_main_func(data)

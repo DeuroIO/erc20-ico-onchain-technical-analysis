@@ -5,7 +5,7 @@ import numpy as np
 import datetime
 
 def coinmarketcap_data(symbol):
-    url = 'https://graphs.coinmarketcap.com/currencies/{}/'.format(symbol)
+    url = 'https://graphs2.coinmarketcap.com/currencies/{}/'.format(symbol)
     data = requests.get(url).json()
 
     market_cap_by_available_supply = data['market_cap_by_available_supply']
