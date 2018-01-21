@@ -10,7 +10,7 @@ exchange_accounts = ['0xfbb1b73c4f0bda4f67dca266ce6ef42f520fbb98','0xe94b04a0fed
 '0x5E575279bf9f4acf0A130c186861454247394C06','0x8271B2E8CBe29396e9563229030c89679B9470db', #liqui.io]
 '0x8d12a197cb00d4747a1fe03395095ce2a5cc6819', #etherdelta
 '0xfaabe432a1e6843f3486f11fa360a1e1248677fc', #cex.io
-'0x5c985e89dde482efe97ea9f1950ad149eb73829b', #huobi.pro
+'0x5c985e89dde482efe97ea9f1950ad149eb73829b','0x58c2cb4a6BeE98C309215D0d2A38d7F8aa71211c','0xeec606a66edb6f497662ea31b5eb1610da87ab5f','0x04645AF26b54BD85Dc02Ac65054e87362A72CB22','0xE93381fB4c4F14bDa253907b18faD305D799241a' #huobi.pro
 ]
 exchange_accounts = [x.lower() for x in exchange_accounts]
 
@@ -28,7 +28,7 @@ def main_func(symbol,Watch_addr,coinmarketcap_symbol):
     escape_accounts.append("0x30993352B0e5a02A5ea2A7711FD7C97a4401D654") # Theta team
     escape_accounts.append("0x03E130eaFAB61ca4D31923B4043db497a830D2bD") # Theta team
     escape_accounts.append("0xb65Ad53b13B3c7a89527164Fe69CcD56FcEba1B9") # theta team
-    
+
     return main_business_logic(symbol,escape_accounts,coinmarketcap_symbol)
 
 def driver_to_run_main_func(data):
