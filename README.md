@@ -23,7 +23,7 @@ $ pip install -r requirements.txt
 ![img](http://www.dhanashriacademy.com/market/wp-content/uploads/2017/10/WHAT-IS-TECHNICAL-ANALYSIS.jpg)
 
 ### Usage
-Create a share object.
+Run the main business logic
 ```python
 python main.py
 ```
