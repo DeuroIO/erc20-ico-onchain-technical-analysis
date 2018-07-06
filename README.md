@@ -1,7 +1,7 @@
 # ICO Top holder analysis
 > *"Human tuned heuristic Python Library for ICO company analysis."*
 
-![](pics/logo-deuro.png)
+![](pics/logo.png)
 
 ### Table of Contents
 * [Installation](#installation)
