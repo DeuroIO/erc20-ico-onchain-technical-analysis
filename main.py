@@ -1,6 +1,5 @@
 from analysis.bussiness_logic import main_business_logic
 import data.whale_data as wd
-import sys
 
 #exchange_accounts
 exchange_accounts = ['0xfbb1b73c4f0bda4f67dca266ce6ef42f520fbb98','0xe94b04a0fed112f3664e45adb2b8915693dd5ff3', #Bittrex
