@@ -17,7 +17,7 @@ $ git clone https://github.com/DeuroIO/erc20-ico-onchain-technical-analysis.git 
 
 Install necessary dependencies
 ```console
-$ pip install -r requirements.txt
+$ pip install -r requirement.txt
 ```
 
 ![img](http://www.dhanashriacademy.com/market/wp-content/uploads/2017/10/WHAT-IS-TECHNICAL-ANALYSIS.jpg)
