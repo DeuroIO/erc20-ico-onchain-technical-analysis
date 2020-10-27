@@ -6,7 +6,7 @@ chardet==2.3.0
 cloud-init==17.1
 command-not-found==0.3
 configobj==5.0.6
-cryptography==1.2.3
+cryptography==3.2
 decorator==4.2.1
 idna==2.0
 ipython-genutils==0.2.0
