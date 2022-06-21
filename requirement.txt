@@ -20,7 +20,7 @@ language-selector==0.1
 lxml==4.1.1
 MarkupSafe==0.23
 nbformat==4.4.0
-numpy==1.14.0
+numpy==1.22.0
 oauthlib==1.0.3
 pandas==0.22.0
 plotly==2.2.3
